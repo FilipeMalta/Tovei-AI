@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Traço Estúdio de Arquitetura — Projeto Conceito Torvei.AI</title>
 <link rel="stylesheet" href="shared.css">
-<style>:root{ --a:#27272A; --b:#71717A; --cta:#FFFFFF; }</style>
+<style>:root{
+  --a:#27272A; --b:#71717A; --cta:#FFFFFF;
+  --overlay: linear-gradient(135deg, rgba(39,39,42,0.88), rgba(113,113,122,0.78));
+  --hero-img: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80&auto=format&fit=crop');
+}</style>
 </head>
 <body>
   <header class="mp-header">
     <span class="mp-logo">Traço Estúdio</span>
     <nav class="mp-nav"><a href="#">Início</a><a href="#">Projetos</a><a href="#">Contato</a></nav>
+    <a class="mp-nav-cta" href="#">Solicitar Projeto</a>
   </header>
   <section class="mp-hero">
     <span class="mp-badge">Projeto conceito Torvei.AI</span>
@@ -19,9 +24,9 @@
     <a class="mp-cta" href="#">Solicitar Projeto</a>
   </section>
   <section class="mp-features">
-    <div class="mp-feature"><h3>Projeto Arquitetônico</h3><p>Do conceito à aprovação na prefeitura.</p></div>
-    <div class="mp-feature"><h3>Design de Interiores</h3><p>Ambientes únicos e funcionais.</p></div>
-    <div class="mp-feature"><h3>Acompanhamento de Obra</h3><p>Da planta à entrega das chaves.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">01</div><h3>Projeto Arquitetônico</h3><p>Do conceito à aprovação na prefeitura.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">02</div><h3>Design de Interiores</h3><p>Ambientes únicos e funcionais.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">03</div><h3>Acompanhamento de Obra</h3><p>Da planta à entrega das chaves.</p></div>
   </section>
   <footer class="mp-footer">
     <span>&copy; Traço Estúdio de Arquitetura</span>

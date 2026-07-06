@@ -1,5 +1,5 @@
 /* ===================== ESTILO COMPARTILHADO DOS PROJETOS CONCEITO ===================== */
-/* Cada página de nicho define --a, --b (gradiente) e --cta (cor do botão) e importa este arquivo. */
+/* Cada página de nicho define --a, --b, --cta, --overlay e --hero-img e importa este arquivo. */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
@@ -18,12 +18,25 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 32px;
+  gap: 16px;
+  padding: 18px 32px;
 }
-.mp-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; }
+.mp-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; white-space: nowrap; }
 .mp-nav { display: flex; gap: 20px; font-size: 0.85rem; opacity: 0.85; }
 .mp-nav a:hover { opacity: 1; text-decoration: underline; }
+.mp-nav-cta {
+  flex-shrink: 0;
+  background: var(--cta);
+  color: var(--a);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 9px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
 
+/* Hero com foto real do nicho (overlay de gradiente da marca + imagem) */
 .mp-hero {
   flex: 1;
   display: flex;
@@ -31,21 +44,26 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 24px 32px 48px;
+  padding: 36px 32px 56px;
   gap: 14px;
+  background-image: var(--overlay), var(--hero-img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .mp-badge {
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.18);
   padding: 5px 14px;
   border-radius: 999px;
   margin-bottom: 6px;
+  backdrop-filter: blur(4px);
 }
-.mp-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; max-width: 640px; line-height: 1.2; }
-.mp-hero p { font-size: 1rem; opacity: 0.85; max-width: 480px; }
+.mp-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; max-width: 640px; line-height: 1.2; text-shadow: 0 2px 16px rgba(0,0,0,0.25); }
+.mp-hero p { font-size: 1rem; opacity: 0.92; max-width: 480px; text-shadow: 0 1px 8px rgba(0,0,0,0.2); }
 .mp-cta {
   margin-top: 10px;
   display: inline-flex;
@@ -56,13 +74,13 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.95rem;
   padding: 14px 30px;
   border-radius: 10px;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
 }
 
 .mp-features {
   display: flex;
   gap: 20px;
-  padding: 0 32px 40px;
+  padding: 32px 32px 40px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -74,6 +92,18 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 14px;
   padding: 20px;
+}
+.mp-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--cta);
+  color: var(--a);
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-bottom: 12px;
 }
 .mp-feature h3 { font-size: 1rem; margin-bottom: 8px; }
 .mp-feature p { font-size: 0.85rem; opacity: 0.8; }
@@ -90,10 +120,10 @@ a { color: inherit; text-decoration: none; }
 .mp-footer a:hover { text-decoration: underline; opacity: 1; }
 
 @media (max-width: 520px) {
-  .mp-header { padding: 16px 20px; }
+  .mp-header { padding: 14px 20px; }
   .mp-nav { display: none; }
-  .mp-hero { padding: 20px 20px 36px; }
-  .mp-features { padding: 0 20px 32px; flex-direction: column; align-items: stretch; }
+  .mp-hero { padding: 28px 20px 40px; }
+  .mp-features { padding: 24px 20px 32px; flex-direction: column; align-items: stretch; }
   .mp-feature { max-width: none; }
   .mp-footer { flex-direction: column; gap: 6px; text-align: center; padding: 16px 20px; }
 }

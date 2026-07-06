@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estúdio Nuvem — Projeto Conceito Torvei.AI</title>
 <link rel="stylesheet" href="shared.css">
-<style>:root{ --a:#831843; --b:#DB2777; --cta:#FFFFFF; }</style>
+<style>:root{
+  --a:#831843; --b:#DB2777; --cta:#FFFFFF;
+  --overlay: linear-gradient(135deg, rgba(131,24,67,0.88), rgba(219,39,119,0.8));
+  --hero-img: url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80&auto=format&fit=crop');
+}</style>
 </head>
 <body>
   <header class="mp-header">
     <span class="mp-logo">Estúdio Nuvem</span>
     <nav class="mp-nav"><a href="#">Início</a><a href="#">Coleção</a><a href="#">Contato</a></nav>
+    <a class="mp-nav-cta" href="#">Ver Coleção</a>
   </header>
   <section class="mp-hero">
     <span class="mp-badge">Projeto conceito Torvei.AI</span>
@@ -19,9 +24,9 @@
     <a class="mp-cta" href="#">Ver Coleção</a>
   </section>
   <section class="mp-features">
-    <div class="mp-feature"><h3>Coleção Cápsula</h3><p>Lançamentos mensais e exclusivos.</p></div>
-    <div class="mp-feature"><h3>Provador Virtual</h3><p>Experimente looks direto pelo site.</p></div>
-    <div class="mp-feature"><h3>Troca Facilitada</h3><p>7 dias para trocar sem burocracia.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">01</div><h3>Coleção Cápsula</h3><p>Lançamentos mensais e exclusivos.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">02</div><h3>Provador Virtual</h3><p>Experimente looks direto pelo site.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">03</div><h3>Troca Facilitada</h3><p>7 dias para trocar sem burocracia.</p></div>
   </section>
   <footer class="mp-footer">
     <span>&copy; Estúdio Nuvem</span>

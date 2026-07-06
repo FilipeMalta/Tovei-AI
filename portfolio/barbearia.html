@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Barbearia Vintage — Projeto Conceito Torvei.AI</title>
 <link rel="stylesheet" href="shared.css">
-<style>:root{ --a:#1C1917; --b:#78350F; --cta:#D4AF37; }</style>
+<style>:root{
+  --a:#1C1917; --b:#78350F; --cta:#D4AF37;
+  --overlay: linear-gradient(135deg, rgba(28,25,23,0.88), rgba(120,53,15,0.82));
+  --hero-img: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&q=80&auto=format&fit=crop');
+}</style>
 </head>
 <body>
   <header class="mp-header">
     <span class="mp-logo">Barbearia Vintage</span>
     <nav class="mp-nav"><a href="#">Início</a><a href="#">Serviços</a><a href="#">Contato</a></nav>
+    <a class="mp-nav-cta" href="#">Marcar Horário</a>
   </header>
   <section class="mp-hero">
     <span class="mp-badge">Projeto conceito Torvei.AI</span>
@@ -19,9 +24,9 @@
     <a class="mp-cta" href="#">Marcar Horário</a>
   </section>
   <section class="mp-features">
-    <div class="mp-feature"><h3>Corte Masculino</h3><p>Técnicas clássicas e modernas.</p></div>
-    <div class="mp-feature"><h3>Barboterapia</h3><p>Toalha quente e navalha.</p></div>
-    <div class="mp-feature"><h3>Ambiente Exclusivo</h3><p>Drinks e clima descontraído.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">01</div><h3>Corte Masculino</h3><p>Técnicas clássicas e modernas.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">02</div><h3>Barboterapia</h3><p>Toalha quente e navalha.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">03</div><h3>Ambiente Exclusivo</h3><p>Drinks e clima descontraído.</p></div>
   </section>
   <footer class="mp-footer">
     <span>&copy; Barbearia Vintage</span>

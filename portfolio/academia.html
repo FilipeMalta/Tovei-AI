@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Potência Fitness — Projeto Conceito Torvei.AI</title>
 <link rel="stylesheet" href="shared.css">
-<style>:root{ --a:#111111; --b:#F97316; --cta:#FFFFFF; }</style>
+<style>:root{
+  --a:#111111; --b:#F97316; --cta:#FFFFFF;
+  --overlay: linear-gradient(135deg, rgba(17,17,17,0.88), rgba(249,115,22,0.75));
+  --hero-img: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80&auto=format&fit=crop');
+}</style>
 </head>
 <body>
   <header class="mp-header">
     <span class="mp-logo">Potência Fitness</span>
     <nav class="mp-nav"><a href="#">Início</a><a href="#">Planos</a><a href="#">Contato</a></nav>
+    <a class="mp-nav-cta" href="#">Matricule-se</a>
   </header>
   <section class="mp-hero">
     <span class="mp-badge">Projeto conceito Torvei.AI</span>
@@ -19,9 +24,9 @@
     <a class="mp-cta" href="#">Matricule-se Agora</a>
   </section>
   <section class="mp-features">
-    <div class="mp-feature"><h3>Musculação</h3><p>Equipamentos de última geração.</p></div>
-    <div class="mp-feature"><h3>Aulas Coletivas</h3><p>Funcional, spinning e muito mais.</p></div>
-    <div class="mp-feature"><h3>Avaliação Física</h3><p>Acompanhamento com especialistas.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">01</div><h3>Musculação</h3><p>Equipamentos de última geração.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">02</div><h3>Aulas Coletivas</h3><p>Funcional, spinning e muito mais.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">03</div><h3>Avaliação Física</h3><p>Acompanhamento com especialistas.</p></div>
   </section>
   <footer class="mp-footer">
     <span>&copy; Potência Fitness</span>

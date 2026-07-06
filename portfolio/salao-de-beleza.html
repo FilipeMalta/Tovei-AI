@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bella Studio — Projeto Conceito Torvei.AI</title>
 <link rel="stylesheet" href="shared.css">
-<style>:root{ --a:#6D28D9; --b:#EC4899; --cta:#FFFFFF; }</style>
+<style>:root{
+  --a:#6D28D9; --b:#EC4899; --cta:#FFFFFF;
+  --overlay: linear-gradient(135deg, rgba(109,40,217,0.88), rgba(236,72,153,0.8));
+  --hero-img: url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&q=80&auto=format&fit=crop');
+}</style>
 </head>
 <body>
   <header class="mp-header">
     <span class="mp-logo">Bella Studio</span>
     <nav class="mp-nav"><a href="#">Início</a><a href="#">Serviços</a><a href="#">Contato</a></nav>
+    <a class="mp-nav-cta" href="#">Agendar Horário</a>
   </header>
   <section class="mp-hero">
     <span class="mp-badge">Projeto conceito Torvei.AI</span>
@@ -19,9 +24,9 @@
     <a class="mp-cta" href="#">Agendar Horário</a>
   </section>
   <section class="mp-features">
-    <div class="mp-feature"><h3>Cabelo & Coloração</h3><p>Técnicas modernas e produtos premium.</p></div>
-    <div class="mp-feature"><h3>Manicure & Pedicure</h3><p>Nail designers especializadas.</p></div>
-    <div class="mp-feature"><h3>Estética Facial</h3><p>Tratamentos para todos os tipos de pele.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">01</div><h3>Cabelo & Coloração</h3><p>Técnicas modernas e produtos premium.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">02</div><h3>Manicure & Pedicure</h3><p>Nail designers especializadas.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">03</div><h3>Estética Facial</h3><p>Tratamentos para todos os tipos de pele.</p></div>
   </section>
   <footer class="mp-footer">
     <span>&copy; Bella Studio</span>

@@ -287,7 +287,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    perspective: 1400px;
   }
+  .device-group {
+    position: relative;
+    transform: rotateY(-11deg) rotateX(5deg) rotateZ(-1deg);
+    transform-style: preserve-3d;
+    transition: transform .5s ease;
+  }
+  .hero-visual:hover .device-group { transform: rotateY(-4deg) rotateX(2deg) rotateZ(0deg); }
   .device-laptop {
     position: relative;
     width: 380px;
@@ -295,7 +303,7 @@
     background: var(--primary);
     border-radius: 14px;
     padding: 10px;
-    box-shadow: var(--shadow-strong);
+    box-shadow: 0 45px 70px -20px rgba(11,31,51,0.5), 0 20px 30px -10px rgba(11,31,51,0.3);
     z-index: 2;
   }
   .device-laptop::after {
@@ -362,6 +370,34 @@
     50% { transform: translateY(-18px); }
   }
 
+  /* ===================== BARRA DE PROVA SOCIAL ===================== */
+  .social-proof { background: var(--bg-alt); border-bottom: 1px solid rgba(11,31,51,0.06); padding: 32px 0; }
+  .social-proof-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+  .social-proof-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .social-proof-cards { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .social-proof-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-main);
+    border: 1px solid rgba(11,31,51,0.08);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .social-proof-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); border-color: var(--accent); }
+  .social-proof-card i { width: 16px; height: 16px; color: var(--accent-hover); flex-shrink: 0; }
+  .social-proof-card i:last-child { width: 14px; height: 14px; color: var(--secondary); }
+
   /* ===================== CARDS GENÉRICOS ===================== */
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
@@ -386,6 +422,8 @@
   /* ===================== PROBLEMA / SOLUÇÃO ===================== */
   .problem-solution { background: var(--bg-alt); }
   .ps-card .icon-badge { background: rgba(100,116,139,0.12); color: var(--secondary); }
+  .ps-card .icon-badge.tone-primary { background: rgba(11,31,51,0.08); color: var(--primary); }
+  .ps-card .icon-badge.tone-accent { background: rgba(0,208,132,0.14); color: var(--accent-hover); }
   .ps-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
   .ps-card .problem-tag {
     display: inline-block;
@@ -469,6 +507,14 @@
     text-align: center;
     padding-top: 8px;
   }
+  .step-icon {
+    width: 30px; height: 30px;
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    opacity: 0.85;
+  }
+  .step-icon i { width: 26px; height: 26px; }
   .step-number {
     width: 56px; height: 56px;
     margin: 0 auto 22px;
@@ -548,7 +594,9 @@
   }
   .portfolio-card {
     position: relative;
-    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-alt);
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-soft);
@@ -556,8 +604,22 @@
   }
   .portfolio-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+  /* Barra estilo "janela de navegador" para simular print real de site */
+  .browser-chrome {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 10px;
+    background: #E7ECF2;
+  }
+  .browser-chrome .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .browser-chrome .dot.red { background: #FF5F57; }
+  .browser-chrome .dot.yellow { background: #FEBC2E; }
+  .browser-chrome .dot.green { background: #28C840; }
+
   /* Thumbnail: iframe da página real, renderizado em escala reduzida (sem precisar de screenshot) */
-  .portfolio-thumb { width: 100%; height: 100%; overflow: hidden; transition: transform .35s ease; }
+  .portfolio-thumb { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; transition: transform .35s ease; }
   .portfolio-thumb iframe {
     display: block;
     width: 400%; height: 400%;
@@ -580,45 +642,21 @@
   .portfolio-card:hover .portfolio-overlay,
   .portfolio-card:focus-visible .portfolio-overlay { opacity: 1; }
   .portfolio-overlay i { width: 26px; height: 26px; }
-  .portfolio-overlay span { font-size: 0.85rem; font-weight: 700; text-align: center; padding: 0 10px; }
+  .portfolio-overlay span { font-size: 0.85rem; font-weight: 700; text-align: center; padding: 0 10px; line-height: 1.4; }
 
-  /* ===================== LIGHTBOX DO PORTFÓLIO ===================== */
-  .lightbox {
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(11,31,51,0.92);
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
-    opacity: 0; visibility: hidden;
-    transition: opacity .25s ease, visibility .25s ease;
-  }
-  .lightbox.open { opacity: 1; visibility: visible; }
-  .lightbox-content { width: min(700px, 90vw); }
-  .lightbox-mockup { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-strong); }
-  .lightbox-mockup iframe { width: 100%; height: 100%; border: 0; }
-  .lightbox-caption { text-align: center; margin-top: 22px; }
-  .lightbox-caption strong { display: block; color: #FFFFFF; font-size: 1.15rem; margin-bottom: 4px; }
-  .lightbox-caption span { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
-  .lightbox-caption .lightbox-open-full {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 14px;
-    font-size: 0.85rem; font-weight: 600;
-    color: var(--accent);
-  }
-  .lightbox-caption .lightbox-open-full:hover { color: var(--accent-hover); }
-  .lightbox-caption .lightbox-open-full i { width: 14px; height: 14px; }
-  .lightbox-close, .lightbox-nav {
+  /* Badge fixo de "abrir em nova aba" no canto do card */
+  .portfolio-external {
     position: absolute;
-    width: 46px; height: 46px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    color: #FFFFFF;
+    top: 8px; right: 8px;
+    width: 26px; height: 26px;
     display: flex; align-items: center; justify-content: center;
-    transition: background .2s ease;
+    background: rgba(11,31,51,0.55);
+    border-radius: 8px;
+    color: #FFFFFF;
+    backdrop-filter: blur(3px);
+    z-index: 2;
   }
-  .lightbox-close:hover, .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
-  .lightbox-close { top: 24px; right: 24px; }
-  .lightbox-nav.prev { left: 16px; top: 50%; transform: translateY(-50%); }
-  .lightbox-nav.next { right: 16px; top: 50%; transform: translateY(-50%); }
+  .portfolio-external i { width: 14px; height: 14px; }
 
   /* ===================== DEPOIMENTOS ===================== */
   .testimonials { background: var(--bg-alt); }
@@ -630,6 +668,32 @@
     color: var(--primary);
     font-style: italic;
   }
+
+  /* ===================== FAQ ===================== */
+  .faq { background: var(--bg-alt); }
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .faq-item {
+    background: var(--bg-main);
+    border: 1px solid rgba(11,31,51,0.08);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--primary);
+  }
+  .faq-question i { width: 20px; height: 20px; color: var(--secondary); flex-shrink: 0; transition: transform .25s ease, color .25s ease; }
+  .faq-item.open .faq-question i { transform: rotate(180deg); color: var(--accent-hover); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height .3s ease; padding: 0 24px; }
+  .faq-answer p { color: var(--secondary); font-size: 0.95rem; padding-bottom: 20px; }
 
   /* ===================== CTA FINAL ===================== */
   .cta-final {
@@ -648,6 +712,15 @@
   }
   .cta-final h2 { color: #FFFFFF; font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: 16px; }
   .cta-final p { color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 36px; font-size: 1.05rem; font-weight: 500; }
+  .cta-final-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 22px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+  }
+  .cta-final-note i { width: 14px; height: 14px; flex-shrink: 0; }
 
   /* ===================== FOOTER ===================== */
   footer {
@@ -752,16 +825,17 @@
 
     <nav class="nav-links">
       <a href="#servicos">Serviços</a>
-      <a href="#cases">Cases</a>
-      <a href="#portfolio">Portfólio</a>
       <a href="#como-funciona">Como Funciona</a>
-      <a href="#planos">Planos</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#projetos-reais">Projetos Reais</a>
+      <a href="#estilos">Estilos</a>
+      <a href="#faq">FAQ</a>
       <a href="#contato">Contato</a>
     </nav>
 
     <div class="nav-cta">
       <a href="#" target="_blank" rel="noopener" class="btn btn-primary btn-primary-desktop whatsapp-cta"
-         data-msg="Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços.">
+         data-msg="Olá! Vi o site da Torvei.AI e quero saber mais">
         <i data-lucide="message-circle"></i> Fale no WhatsApp
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
@@ -772,13 +846,14 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#servicos">Serviços</a>
-    <a href="#cases">Cases</a>
-    <a href="#portfolio">Portfólio</a>
     <a href="#como-funciona">Como Funciona</a>
-    <a href="#planos">Planos</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#projetos-reais">Projetos Reais</a>
+    <a href="#estilos">Estilos</a>
+    <a href="#faq">FAQ</a>
     <a href="#contato">Contato</a>
     <a href="#" target="_blank" rel="noopener" class="btn btn-primary whatsapp-cta"
-       data-msg="Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços.">
+       data-msg="Olá! Vi o site da Torvei.AI e quero saber mais">
       <i data-lucide="message-circle"></i> Fale no WhatsApp
     </a>
   </div>
@@ -793,7 +868,7 @@
       <p class="subtitle">Tecnologia que cabe no seu bolso — sites, apps e sistemas simples, feitos com IA para pequenas empresas.</p>
       <div class="hero-actions">
         <a href="#" target="_blank" rel="noopener" class="btn btn-primary btn-lg whatsapp-cta"
-           data-msg="Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços.">
+           data-msg="Olá! Vi o site da Torvei.AI e quero solicitar um orçamento grátis">
           <i data-lucide="rocket"></i> Solicitar Orçamento Grátis
         </a>
         <a href="#servicos" class="btn btn-dark btn-lg">Ver Serviços</a>
@@ -808,19 +883,36 @@
     <div class="hero-visual reveal">
       <div class="float-shape one"></div>
       <div class="float-shape two"></div>
-      <div class="device-laptop">
-        <div class="device-screen">
-          <div class="screen-line w60"></div>
-          <div class="screen-line w40"></div>
-          <div class="screen-block"></div>
+      <div class="device-group">
+        <div class="device-laptop">
+          <div class="device-screen">
+            <div class="screen-line w60"></div>
+            <div class="screen-line w40"></div>
+            <div class="screen-block"></div>
+          </div>
+        </div>
+        <div class="device-phone">
+          <div class="dot"></div>
+          <div class="card"><div class="bar"></div><div class="bar accent"></div></div>
+          <div class="card"><div class="bar"></div><div class="bar"></div></div>
+          <div class="card"><div class="bar accent"></div><div class="bar"></div></div>
         </div>
       </div>
-      <div class="device-phone">
-        <div class="dot"></div>
-        <div class="card"><div class="bar"></div><div class="bar accent"></div></div>
-        <div class="card"><div class="bar"></div><div class="bar"></div></div>
-        <div class="card"><div class="bar accent"></div><div class="bar"></div></div>
-      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROVA SOCIAL ===================== -->
+<section class="social-proof">
+  <div class="container social-proof-inner reveal">
+    <span class="social-proof-label">Já ajudamos negócios reais a entrar no digital</span>
+    <div class="social-proof-cards">
+      <a href="https://filipemalta.github.io/fct-fortal-center-training/" target="_blank" rel="noopener" class="social-proof-card">
+        <i data-lucide="dumbbell"></i> FCT — Fortal Center Training <i data-lucide="external-link"></i>
+      </a>
+      <a href="https://english-easy-a1.lovable.app/" target="_blank" rel="noopener" class="social-proof-card">
+        <i data-lucide="graduation-cap"></i> English Easy A1 <i data-lucide="external-link"></i>
+      </a>
     </div>
   </div>
 </section>
@@ -836,7 +928,7 @@
 
     <div class="grid-3">
       <div class="card ps-card reveal">
-        <div class="icon-badge"><i data-lucide="monitor-x"></i></div>
+        <div class="icon-badge tone-primary"><i data-lucide="monitor-x"></i></div>
         <span class="problem-tag">Problema</span>
         <h3>Site desatualizado</h3>
         <p>Sua presença online passa a impressão errada e afasta clientes em potencial.</p>
@@ -852,7 +944,7 @@
       </div>
 
       <div class="card ps-card reveal">
-        <div class="icon-badge"><i data-lucide="wallet"></i></div>
+        <div class="icon-badge tone-accent"><i data-lucide="wallet"></i></div>
         <span class="problem-tag">Problema</span>
         <h3>Orçamento apertado</h3>
         <p>Agências tradicionais cobram caro e demoram meses para entregar qualquer coisa.</p>
@@ -935,21 +1027,25 @@
 
     <div class="timeline">
       <div class="step reveal">
+        <div class="step-icon"><i data-lucide="message-circle"></i></div>
         <div class="step-number">1</div>
         <h3>Conversamos sobre sua ideia</h3>
         <p>Entendemos seu negócio, objetivos e o que você precisa resolver.</p>
       </div>
       <div class="step reveal">
+        <div class="step-icon"><i data-lucide="wand-2"></i></div>
         <div class="step-number">2</div>
         <h3>Criamos um protótipo rápido</h3>
         <p>Com apoio de IA, montamos uma primeira versão em poucos dias.</p>
       </div>
       <div class="step reveal">
+        <div class="step-icon"><i data-lucide="refresh-cw"></i></div>
         <div class="step-number">3</div>
         <h3>Refinamos juntos</h3>
         <p>Você acompanha e ajustamos detalhes até ficar do jeito certo.</p>
       </div>
       <div class="step reveal">
+        <div class="step-icon"><i data-lucide="send"></i></div>
         <div class="step-number">4</div>
         <h3>Publicamos e damos suporte</h3>
         <p>Colocamos no ar e continuamos por perto para o que precisar.</p>
@@ -959,7 +1055,7 @@
 </section>
 
 <!-- ===================== POR QUE A TORVEI.AI ===================== -->
-<section class="section" id="planos">
+<section class="section" id="diferenciais">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow"><i data-lucide="award" style="width:14px;height:14px;"></i> Diferenciais</div>
@@ -971,7 +1067,7 @@
       <div class="card why-card reveal">
         <div class="icon-badge"><i data-lucide="gauge"></i></div>
         <h3>Rapidez com IA</h3>
-        <p>IA acelera o desenvolvimento sem abrir mão da qualidade.</p>
+        <p>O que levaria 3 semanas em uma agência tradicional, entregamos em 3 a 5 dias úteis.</p>
       </div>
       <div class="card why-card reveal">
         <div class="icon-badge"><i data-lucide="hand-coins"></i></div>
@@ -992,11 +1088,11 @@
   </div>
 </section>
 
-<!-- ===================== CASES DE SUCESSO ===================== -->
-<section class="section cases" id="cases">
+<!-- ===================== PROJETOS REAIS ===================== -->
+<section class="section cases" id="projetos-reais">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow"><i data-lucide="briefcase" style="width:14px;height:14px;"></i> Portfólio</div>
+      <div class="eyebrow"><i data-lucide="briefcase" style="width:14px;height:14px;"></i> Projetos Reais</div>
       <h2>Projetos que já entregamos e estão no ar</h2>
       <p>Confira exemplos reais de sites e sistemas desenvolvidos pela Torvei.AI — clique e veja funcionando ao vivo.</p>
     </div>
@@ -1030,14 +1126,14 @@
   </div>
 </section>
 
-<!-- ===================== PORTFÓLIO (mockups conceituais) ===================== -->
-<section class="section portfolio" id="portfolio">
+<!-- ===================== ESTILOS QUE DOMINAMOS (mockups conceituais) ===================== -->
+<section class="section portfolio" id="estilos">
   <div class="container">
     <div class="section-head reveal">
       <span class="portfolio-tag">🎨 Projetos conceito — exemplos do nosso trabalho</span>
-      <div class="eyebrow"><i data-lucide="layout-grid" style="width:14px;height:14px;"></i> Nosso Portfólio</div>
-      <h2>O que Podemos Criar Para Você</h2>
-      <p>Projetos conceito desenvolvidos pela Torvei.AI para demonstrar nosso estilo e capacidade técnica. Clique em qualquer card para ampliar.</p>
+      <div class="eyebrow"><i data-lucide="layout-grid" style="width:14px;height:14px;"></i> Projetos Conceito</div>
+      <h2>Estilos que Dominamos</h2>
+      <p>Projetos conceito desenvolvidos pela Torvei.AI para demonstrar nosso estilo e capacidade técnica em diferentes nichos. Clique em qualquer card para navegar pelo site de demonstração completo.</p>
     </div>
 
     <!-- Grid montado dinamicamente via JS a partir de PORTFOLIO_ITEMS (ver <script> no fim da página) -->
@@ -1074,15 +1170,79 @@
   </div>
 </section>
 
+<!-- ===================== FAQ ===================== -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><i data-lucide="help-circle" style="width:14px;height:14px;"></i> Dúvidas Frequentes</div>
+      <h2>Perguntas que todo mundo faz</h2>
+      <p>Ainda tem dúvidas? Aqui estão as respostas mais comuns — e se precisar de algo mais específico, é só chamar no WhatsApp.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Quanto tempo leva um projeto?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Depende do serviço, mas a maioria dos projetos fica pronta entre 3 e 10 dias úteis. Sites institucionais e landing pages costumam ser os mais rápidos; sistemas mais robustos podem levar um pouco mais, sempre combinado com você antes de começar.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Preciso pagar tudo de uma vez?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Não. Trabalhamos com entrada + saldo na entrega para a maioria dos projetos, e para sistemas maiores também é possível parcelar. A forma de pagamento é combinada com você antes de fechar.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Vocês dão suporte depois da entrega?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Sim. Todo projeto sai com um período de suporte incluso, e se precisar de algo contínuo, temos o plano de Manutenção Mensal para manter tudo sempre atualizado e funcionando.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Funciona para qualquer tipo de negócio?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Sim. Já criamos projetos conceito para dentistas, restaurantes, academias, salões, advogados e muitos outros nichos — a solução é sempre adaptada para o seu tipo de negócio.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Como funciona o pagamento?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Aceitamos Pix e transferência bancária. Cobramos um sinal para iniciar o projeto e o restante na entrega, com tudo combinado com transparência antes de começar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CTA FINAL ===================== -->
 <section class="section cta-final" id="contato">
   <div class="container reveal">
     <h2>Pronto para colocar seu negócio no digital?</h2>
     <p>Fale com a gente agora mesmo e receba um orçamento gratuito, sem compromisso.</p>
     <a href="#" target="_blank" rel="noopener" class="btn btn-primary btn-lg whatsapp-cta"
-       data-msg="Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços.">
+       data-msg="Olá! Vi o site da Torvei.AI e quero saber mais">
       <i data-lucide="message-circle"></i> Fale com a gente agora
     </a>
+    <p class="cta-final-note"><i data-lucide="alert-circle"></i> Vagas limitadas para novos projetos este mês — fale com a gente antes que fechem</p>
   </div>
 </section>
 
@@ -1100,7 +1260,7 @@
           <!-- PLACEHOLDER: troque o link do Instagram abaixo pelo perfil oficial da Torvei.AI -->
           <a href="https://instagram.com/torvei.ai" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp" class="whatsapp-cta"
-             data-msg="Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços."><i data-lucide="message-circle"></i></a>
+             data-msg="Olá! Vi o site da Torvei.AI e quero saber mais"><i data-lucide="message-circle"></i></a>
           <!-- PLACEHOLDER: troque pelo e-mail oficial de contato da Torvei.AI -->
           <a href="mailto:contato@torvei.ai" aria-label="E-mail"><i data-lucide="mail"></i></a>
         </div>
@@ -1111,7 +1271,7 @@
         <ul>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#como-funciona">Como Funciona</a></li>
-          <li><a href="#planos">Planos</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
@@ -1147,112 +1307,66 @@
 
 <!-- Botão flutuante do WhatsApp -->
 <a href="#" target="_blank" rel="noopener" class="whatsapp-float whatsapp-cta" aria-label="Fale no WhatsApp"
-   data-msg="Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços.">
+   data-msg="Olá! Vi o site da Torvei.AI e quero saber mais">
   <i data-lucide="message-circle"></i>
 </a>
 
-<!-- Lightbox do Portfólio -->
-<div class="lightbox" id="portfolioLightbox" role="dialog" aria-modal="true" aria-label="Visualização ampliada do projeto conceito">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Fechar"><i data-lucide="x"></i></button>
-  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Projeto anterior"><i data-lucide="chevron-left"></i></button>
-  <div class="lightbox-content">
-    <div class="lightbox-mockup" id="lightboxMockup"></div>
-    <div class="lightbox-caption">
-      <strong id="lightboxNiche"></strong>
-      <span>Projeto conceito Torvei.AI</span>
-      <br>
-      <a href="#" target="_blank" rel="noopener" class="lightbox-open-full" id="lightboxOpenFull">
-        Abrir página completa <i data-lucide="external-link"></i>
-      </a>
-    </div>
-  </div>
-  <button class="lightbox-nav next" id="lightboxNext" aria-label="Próximo projeto"><i data-lucide="chevron-right"></i></button>
-</div>
-
 <script>
-  // ===== Portfólio: mockups conceituais (páginas reais em /portfolio/) + lightbox =====
-  // PLACEHOLDER: adicione/remova nichos aqui para atualizar o portfólio (o "file" aponta para a página real dentro de /portfolio/)
-  const PORTFOLIO_ITEMS = [
-    { niche: 'Dentista', file: 'portfolio/dentista.html' },
-    { niche: 'Restaurante', file: 'portfolio/restaurante.html' },
-    { niche: 'Loja de Roupas', file: 'portfolio/loja-de-roupas.html' },
-    { niche: 'Petshop', file: 'portfolio/petshop.html' },
-    { niche: 'Advogado', file: 'portfolio/advogado.html' },
-    { niche: 'Academia', file: 'portfolio/academia.html' },
-    { niche: 'Salão de Beleza', file: 'portfolio/salao-de-beleza.html' },
-    { niche: 'Contador', file: 'portfolio/contador.html' },
-    { niche: 'Arquiteto', file: 'portfolio/arquiteto.html' },
-    { niche: 'Personal Trainer', file: 'portfolio/personal-trainer.html' },
-    { niche: 'Barbearia', file: 'portfolio/barbearia.html' },
-    { niche: 'Floricultura', file: 'portfolio/floricultura.html' },
-    { niche: 'Imobiliária', file: 'portfolio/imobiliaria.html' },
-    { niche: 'Oficina Mecânica', file: 'portfolio/oficina-mecanica.html' },
-    { niche: 'Clínica de Estética', file: 'portfolio/clinica-de-estetica.html' },
-  ];
-
-  const portfolioGrid = document.getElementById('portfolioGrid');
-  portfolioGrid.innerHTML = PORTFOLIO_ITEMS.map((item, i) => `
-    <div class="portfolio-card reveal" data-index="${i}" tabindex="0" role="button" aria-label="Ver projeto conceito: ${item.niche}">
-      <div class="portfolio-thumb"><iframe src="${item.file}" tabindex="-1" loading="lazy" title="${item.niche} — Projeto conceito Torvei.AI"></iframe></div>
-      <div class="portfolio-overlay"><i data-lucide="search"></i><span>${item.niche}</span></div>
-    </div>
-  `).join('');
-
-  const lightbox = document.getElementById('portfolioLightbox');
-  const lightboxMockup = document.getElementById('lightboxMockup');
-  const lightboxNiche = document.getElementById('lightboxNiche');
-  const lightboxOpenFull = document.getElementById('lightboxOpenFull');
-  let currentPortfolioIndex = 0;
-
-  function renderLightbox() {
-    const item = PORTFOLIO_ITEMS[currentPortfolioIndex];
-    lightboxMockup.innerHTML = `<iframe src="${item.file}" title="${item.niche} — Projeto conceito Torvei.AI"></iframe>`;
-    lightboxNiche.textContent = item.niche;
-    lightboxOpenFull.href = item.file;
-    if (window.lucide) lucide.createIcons();
-  }
-
-  function openLightbox(index) {
-    currentPortfolioIndex = index;
-    renderLightbox();
-    lightbox.classList.add('open');
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-  }
-
-  function showPortfolioItem(delta) {
-    currentPortfolioIndex = (currentPortfolioIndex + delta + PORTFOLIO_ITEMS.length) % PORTFOLIO_ITEMS.length;
-    renderLightbox();
-  }
-
-  portfolioGrid.querySelectorAll('.portfolio-card').forEach((card) => {
-    card.addEventListener('click', () => openLightbox(Number(card.dataset.index)));
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(Number(card.dataset.index));
+  // ===== FAQ: accordion =====
+  document.querySelectorAll('.faq-question').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+      if (isOpen) {
+        answer.style.maxHeight = '0px';
+        item.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     });
   });
 
-  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-  document.getElementById('lightboxPrev').addEventListener('click', () => showPortfolioItem(-1));
-  document.getElementById('lightboxNext').addEventListener('click', () => showPortfolioItem(1));
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') showPortfolioItem(-1);
-    if (e.key === 'ArrowRight') showPortfolioItem(1);
-  });
+  // ===== Portfólio: cada card linka para o site de demonstração completo em /demos/ =====
+  // O "thumb" (miniatura via iframe) usa a página leve de /portfolio/; o "demo" é o site completo em /demos/
+  // PLACEHOLDER: adicione/remova nichos aqui para atualizar o portfólio
+  const PORTFOLIO_ITEMS = [
+    { niche: 'Dentista', thumb: 'portfolio/dentista.html', demo: 'demos/dentista/index.html' },
+    { niche: 'Restaurante', thumb: 'portfolio/restaurante.html', demo: 'demos/restaurante/index.html' },
+    { niche: 'Loja de Roupas', thumb: 'portfolio/loja-de-roupas.html', demo: 'demos/loja-roupas/index.html' },
+    { niche: 'Petshop', thumb: 'portfolio/petshop.html', demo: 'demos/petshop/index.html' },
+    { niche: 'Advogado', thumb: 'portfolio/advogado.html', demo: 'demos/advogado/index.html' },
+    { niche: 'Academia', thumb: 'portfolio/academia.html', demo: 'demos/academia/index.html' },
+    { niche: 'Salão de Beleza', thumb: 'portfolio/salao-de-beleza.html', demo: 'demos/salao-beleza/index.html' },
+    { niche: 'Contador', thumb: 'portfolio/contador.html', demo: 'demos/contador/index.html' },
+    { niche: 'Arquiteto', thumb: 'portfolio/arquiteto.html', demo: 'demos/arquiteto/index.html' },
+    { niche: 'Personal Trainer', thumb: 'portfolio/personal-trainer.html', demo: 'demos/personal-trainer/index.html' },
+    { niche: 'Barbearia', thumb: 'portfolio/barbearia.html', demo: 'demos/barbearia/index.html' },
+    { niche: 'Floricultura', thumb: 'portfolio/floricultura.html', demo: 'demos/floricultura/index.html' },
+    { niche: 'Imobiliária', thumb: 'portfolio/imobiliaria.html', demo: 'demos/imobiliaria/index.html' },
+    { niche: 'Oficina Mecânica', thumb: 'portfolio/oficina-mecanica.html', demo: 'demos/oficina-mecanica/index.html' },
+    { niche: 'Clínica de Estética', thumb: 'portfolio/clinica-de-estetica.html', demo: 'demos/clinica-estetica/index.html' },
+  ];
+
+  const portfolioGrid = document.getElementById('portfolioGrid');
+  portfolioGrid.innerHTML = PORTFOLIO_ITEMS.map((item) => `
+    <a class="portfolio-card reveal" href="${item.demo}" target="_blank" rel="noopener"
+       aria-label="Abrir site de demonstração: ${item.niche} (nova aba)">
+      <div class="browser-chrome"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <div class="portfolio-thumb">
+        <iframe src="${item.thumb}" tabindex="-1" loading="lazy" title="${item.niche} — Projeto conceito Torvei.AI"></iframe>
+        <span class="portfolio-external" aria-hidden="true"><i data-lucide="external-link"></i></span>
+        <div class="portfolio-overlay"><i data-lucide="external-link"></i><span>Ver site completo<br>${item.niche}</span></div>
+      </div>
+    </a>
+  `).join('');
 
   // Número oficial da Torvei.AI no formato internacional (DDI+DDD+número)
   const WHATSAPP_NUMBER = '5511915099227';
-  const DEFAULT_MESSAGE = 'Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços.';
+  const DEFAULT_MESSAGE = 'Olá! Vi o site da Torvei.AI e quero saber mais';
 
   // Monta o link de cada CTA com a mensagem pré-preenchida correspondente
   document.querySelectorAll('.whatsapp-cta').forEach((el) => {

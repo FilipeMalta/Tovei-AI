@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Motor Prime — Projeto Conceito Torvei.AI</title>
 <link rel="stylesheet" href="shared.css">
-<style>:root{ --a:#374151; --b:#4B5563; --cta:#FACC15; }</style>
+<style>:root{
+  --a:#374151; --b:#4B5563; --cta:#FACC15;
+  --overlay: linear-gradient(135deg, rgba(55,65,81,0.88), rgba(75,85,99,0.82));
+  --hero-img: url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80&auto=format&fit=crop');
+}</style>
 </head>
 <body>
   <header class="mp-header">
     <span class="mp-logo">Motor Prime</span>
     <nav class="mp-nav"><a href="#">Início</a><a href="#">Serviços</a><a href="#">Contato</a></nav>
+    <a class="mp-nav-cta" href="#">Agendar Revisão</a>
   </header>
   <section class="mp-hero">
     <span class="mp-badge">Projeto conceito Torvei.AI</span>
@@ -19,9 +24,9 @@
     <a class="mp-cta" href="#">Agendar Revisão</a>
   </section>
   <section class="mp-features">
-    <div class="mp-feature"><h3>Diagnóstico Eletrônico</h3><p>Tecnologia para achar o problema rápido.</p></div>
-    <div class="mp-feature"><h3>Revisão Completa</h3><p>Freios, suspensão e motor.</p></div>
-    <div class="mp-feature"><h3>Orçamento Transparente</h3><p>Sem surpresas na hora de pagar.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">01</div><h3>Diagnóstico Eletrônico</h3><p>Tecnologia para achar o problema rápido.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">02</div><h3>Revisão Completa</h3><p>Freios, suspensão e motor.</p></div>
+    <div class="mp-feature"><div class="mp-feature-icon">03</div><h3>Orçamento Transparente</h3><p>Sem surpresas na hora de pagar.</p></div>
   </section>
   <footer class="mp-footer">
     <span>&copy; Motor Prime</span>
