@@ -491,6 +491,40 @@
   .why-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
   .why-card p { font-size: 0.9rem; color: var(--secondary); }
 
+  /* ===================== CASES DE SUCESSO ===================== */
+  .cases { background: var(--bg-alt); }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .case-card { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+  .case-visual {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--primary), #132c47 60%, var(--accent-hover));
+    position: relative;
+  }
+  .case-visual i { width: 46px; height: 46px; color: #FFFFFF; opacity: 0.9; }
+  .case-visual::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(0,208,132,0.35), transparent 55%);
+  }
+  .case-body { padding: 28px 26px 32px; display: flex; flex-direction: column; flex: 1; }
+  .case-tag {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent-hover);
+    background: rgba(0,208,132,0.1);
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .case-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+  .case-card p.desc { color: var(--secondary); font-size: 0.95rem; margin-bottom: 24px; flex: 1; }
+  .case-card .btn { align-self: flex-start; }
+
   /* ===================== DEPOIMENTOS ===================== */
   .testimonials { background: var(--bg-alt); }
   .testimonial-card {
@@ -607,6 +641,7 @@
     .nav-cta .btn-primary-desktop { display: none; }
     .menu-toggle { display: flex; }
     .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
     .timeline { grid-template-columns: 1fr; gap: 40px; }
     .timeline::before { display: none; }
     .section { padding: 72px 0; }
@@ -635,6 +670,7 @@
 
     <nav class="nav-links">
       <a href="#servicos">Serviços</a>
+      <a href="#cases">Cases</a>
       <a href="#como-funciona">Como Funciona</a>
       <a href="#planos">Planos</a>
       <a href="#contato">Contato</a>
@@ -653,6 +689,7 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#servicos">Serviços</a>
+    <a href="#cases">Cases</a>
     <a href="#como-funciona">Como Funciona</a>
     <a href="#planos">Planos</a>
     <a href="#contato">Contato</a>
@@ -866,6 +903,44 @@
         <div class="icon-badge"><i data-lucide="file-check-2"></i></div>
         <h3>Sem burocracia</h3>
         <p>Processo direto, sem contratos complicados ou letras miúdas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CASES DE SUCESSO ===================== -->
+<section class="section cases" id="cases">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><i data-lucide="briefcase" style="width:14px;height:14px;"></i> Portfólio</div>
+      <h2>Projetos que já entregamos e estão no ar</h2>
+      <p>Confira exemplos reais de sites e sistemas desenvolvidos pela Torvei.AI — clique e veja funcionando ao vivo.</p>
+    </div>
+
+    <!-- PLACEHOLDER: adicione novos cases aqui conforme novos projetos forem entregues -->
+    <div class="grid-2">
+      <div class="card case-card reveal">
+        <div class="case-visual"><i data-lucide="dumbbell"></i></div>
+        <div class="case-body">
+          <span class="case-tag">Site Institucional · Fitness</span>
+          <h3>FCT — Fortal Center Training</h3>
+          <p class="desc">Site institucional para um centro de treinamento físico em Fortaleza (CE), apresentando modalidades, planos de assinatura e infraestrutura, com foco em conversão via WhatsApp.</p>
+          <a href="https://filipemalta.github.io/fct-fortal-center-training/" target="_blank" rel="noopener" class="btn btn-dark">
+            Ver site ao vivo <i data-lucide="external-link"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="card case-card reveal">
+        <div class="case-visual"><i data-lucide="graduation-cap"></i></div>
+        <div class="case-body">
+          <span class="case-tag">Plataforma Educacional · EdTech</span>
+          <h3>English Easy A1</h3>
+          <p class="desc">Plataforma interativa de inglês para iniciantes, com lições, quizzes, flashcards e gamificação (XP e streaks) para engajar alunos do zero ao nível A1.</p>
+          <a href="https://english-easy-a1.lovable.app/" target="_blank" rel="noopener" class="btn btn-dark">
+            Ver site ao vivo <i data-lucide="external-link"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
