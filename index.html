@@ -525,31 +525,111 @@
   .case-card p.desc { color: var(--secondary); font-size: 0.95rem; margin-bottom: 24px; flex: 1; }
   .case-card .btn { align-self: flex-start; }
 
+  /* ===================== PORTFÓLIO (mockups conceituais) ===================== */
+  .portfolio { background: var(--bg-main); }
+  .portfolio-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--secondary);
+    background: var(--bg-alt);
+    border: 1px solid rgba(11,31,51,0.08);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin: 0 auto 20px;
+    width: fit-content;
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .portfolio-card {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+  }
+  .portfolio-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Thumbnail: iframe da página real, renderizado em escala reduzida (sem precisar de screenshot) */
+  .portfolio-thumb { width: 100%; height: 100%; overflow: hidden; transition: transform .35s ease; }
+  .portfolio-thumb iframe {
+    display: block;
+    width: 400%; height: 400%;
+    transform: scale(0.25);
+    transform-origin: top left;
+    border: 0;
+    pointer-events: none;
+  }
+  .portfolio-card:hover .portfolio-thumb,
+  .portfolio-card:focus-visible .portfolio-thumb { transform: scale(1.06); }
+
+  .portfolio-overlay {
+    position: absolute; inset: 0;
+    background: rgba(11,31,51,0.6);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    color: #FFFFFF;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .portfolio-card:hover .portfolio-overlay,
+  .portfolio-card:focus-visible .portfolio-overlay { opacity: 1; }
+  .portfolio-overlay i { width: 26px; height: 26px; }
+  .portfolio-overlay span { font-size: 0.85rem; font-weight: 700; text-align: center; padding: 0 10px; }
+
+  /* ===================== LIGHTBOX DO PORTFÓLIO ===================== */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(11,31,51,0.92);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+  }
+  .lightbox.open { opacity: 1; visibility: visible; }
+  .lightbox-content { width: min(700px, 90vw); }
+  .lightbox-mockup { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-strong); }
+  .lightbox-mockup iframe { width: 100%; height: 100%; border: 0; }
+  .lightbox-caption { text-align: center; margin-top: 22px; }
+  .lightbox-caption strong { display: block; color: #FFFFFF; font-size: 1.15rem; margin-bottom: 4px; }
+  .lightbox-caption span { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+  .lightbox-caption .lightbox-open-full {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 14px;
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--accent);
+  }
+  .lightbox-caption .lightbox-open-full:hover { color: var(--accent-hover); }
+  .lightbox-caption .lightbox-open-full i { width: 14px; height: 14px; }
+  .lightbox-close, .lightbox-nav {
+    position: absolute;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s ease;
+  }
+  .lightbox-close:hover, .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+  .lightbox-close { top: 24px; right: 24px; }
+  .lightbox-nav.prev { left: 16px; top: 50%; transform: translateY(-50%); }
+  .lightbox-nav.next { right: 16px; top: 50%; transform: translateY(-50%); }
+
   /* ===================== DEPOIMENTOS ===================== */
   .testimonials { background: var(--bg-alt); }
-  .testimonial-card {
-    background: var(--bg-main);
-    border: 1px solid rgba(11,31,51,0.08);
-  }
-  .testimonial-card .stars { display: flex; gap: 4px; margin-bottom: 16px; color: var(--accent); }
-  .testimonial-card .stars i { width: 18px; height: 18px; }
+  .testimonial-card { text-align: center; }
+  .testimonial-card .quote-icon { width: 28px; height: 28px; color: var(--accent); margin: 0 auto 18px; }
   .testimonial-card p.quote {
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 22px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--primary);
     font-style: italic;
   }
-  .testimonial-author { display: flex; align-items: center; gap: 12px; }
-  .avatar-placeholder {
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-weight: 700; font-size: 0.9rem;
-    flex-shrink: 0;
-  }
-  .testimonial-author .name { font-weight: 700; font-size: 0.92rem; color: var(--primary); }
-  .testimonial-author .role { font-size: 0.8rem; color: var(--secondary); }
 
   /* ===================== CTA FINAL ===================== */
   .cta-final {
@@ -631,6 +711,7 @@
   /* ===================== RESPONSIVO ===================== */
   @media (max-width: 1024px) {
     .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-grid { grid-template-columns: 1fr; }
     .hero-visual { height: 380px; margin-top: 20px; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -650,6 +731,7 @@
 
   @media (max-width: 560px) {
     .grid-4 { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .device-phone { display: none; }
@@ -671,6 +753,7 @@
     <nav class="nav-links">
       <a href="#servicos">Serviços</a>
       <a href="#cases">Cases</a>
+      <a href="#portfolio">Portfólio</a>
       <a href="#como-funciona">Como Funciona</a>
       <a href="#planos">Planos</a>
       <a href="#contato">Contato</a>
@@ -690,6 +773,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#servicos">Serviços</a>
     <a href="#cases">Cases</a>
+    <a href="#portfolio">Portfólio</a>
     <a href="#como-funciona">Como Funciona</a>
     <a href="#planos">Planos</a>
     <a href="#contato">Contato</a>
@@ -946,57 +1030,45 @@
   </div>
 </section>
 
+<!-- ===================== PORTFÓLIO (mockups conceituais) ===================== -->
+<section class="section portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="portfolio-tag">🎨 Projetos conceito — exemplos do nosso trabalho</span>
+      <div class="eyebrow"><i data-lucide="layout-grid" style="width:14px;height:14px;"></i> Nosso Portfólio</div>
+      <h2>O que Podemos Criar Para Você</h2>
+      <p>Projetos conceito desenvolvidos pela Torvei.AI para demonstrar nosso estilo e capacidade técnica. Clique em qualquer card para ampliar.</p>
+    </div>
+
+    <!-- Grid montado dinamicamente via JS a partir de PORTFOLIO_ITEMS (ver <script> no fim da página) -->
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+  </div>
+</section>
+
 <!-- ===================== DEPOIMENTOS ===================== -->
 <section class="section testimonials">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow"><i data-lucide="quote" style="width:14px;height:14px;"></i> Depoimentos</div>
-      <h2>O que dizem nossos clientes</h2>
-      <p>Espaço reservado — adicione depoimentos reais assim que os primeiros projetos forem entregues.</p>
+      <div class="eyebrow"><i data-lucide="quote" style="width:14px;height:14px;"></i> Nosso Compromisso</div>
+      <h2>O padrão por trás de cada entrega</h2>
+      <p>Ainda estamos construindo nosso histórico de clientes — em breve, depoimentos reais entrarão aqui. Por enquanto, esse é o compromisso que guia cada projeto.</p>
     </div>
 
-    <!-- PLACEHOLDER: troque os 3 cards abaixo por depoimentos reais de clientes (nome, cargo/empresa e avaliação) assim que estiverem disponíveis -->
+    <!-- PLACEHOLDER: substitua os cards abaixo por depoimentos reais (com nome, cargo/empresa e autorização do cliente) assim que estiverem disponíveis -->
     <div class="grid-3">
       <div class="card testimonial-card reveal">
-        <div class="stars">
-          <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-        </div>
-        <p class="quote">"[Espaço para depoimento do cliente — descreva a experiência e o resultado obtido]."</p>
-        <div class="testimonial-author">
-          <div class="avatar-placeholder">CL</div>
-          <div>
-            <div class="name">Nome do Cliente</div>
-            <div class="role">Cargo, Empresa</div>
-          </div>
-        </div>
+        <i data-lucide="quote" class="quote-icon"></i>
+        <p class="quote">"Esse é o padrão de qualidade que entregamos em cada projeto."</p>
       </div>
 
       <div class="card testimonial-card reveal">
-        <div class="stars">
-          <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-        </div>
-        <p class="quote">"[Espaço para depoimento do cliente — descreva a experiência e o resultado obtido]."</p>
-        <div class="testimonial-author">
-          <div class="avatar-placeholder">CL</div>
-          <div>
-            <div class="name">Nome do Cliente</div>
-            <div class="role">Cargo, Empresa</div>
-          </div>
-        </div>
+        <i data-lucide="quote" class="quote-icon"></i>
+        <p class="quote">"Rapidez e cuidado em cada detalhe — é assim que trabalhamos."</p>
       </div>
 
       <div class="card testimonial-card reveal">
-        <div class="stars">
-          <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-        </div>
-        <p class="quote">"[Espaço para depoimento do cliente — descreva a experiência e o resultado obtido]."</p>
-        <div class="testimonial-author">
-          <div class="avatar-placeholder">CL</div>
-          <div>
-            <div class="name">Nome do Cliente</div>
-            <div class="role">Cargo, Empresa</div>
-          </div>
-        </div>
+        <i data-lucide="quote" class="quote-icon"></i>
+        <p class="quote">"Tecnologia acessível, pensada para o crescimento do seu negócio."</p>
       </div>
     </div>
   </div>
@@ -1079,7 +1151,105 @@
   <i data-lucide="message-circle"></i>
 </a>
 
+<!-- Lightbox do Portfólio -->
+<div class="lightbox" id="portfolioLightbox" role="dialog" aria-modal="true" aria-label="Visualização ampliada do projeto conceito">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Fechar"><i data-lucide="x"></i></button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Projeto anterior"><i data-lucide="chevron-left"></i></button>
+  <div class="lightbox-content">
+    <div class="lightbox-mockup" id="lightboxMockup"></div>
+    <div class="lightbox-caption">
+      <strong id="lightboxNiche"></strong>
+      <span>Projeto conceito Torvei.AI</span>
+      <br>
+      <a href="#" target="_blank" rel="noopener" class="lightbox-open-full" id="lightboxOpenFull">
+        Abrir página completa <i data-lucide="external-link"></i>
+      </a>
+    </div>
+  </div>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Próximo projeto"><i data-lucide="chevron-right"></i></button>
+</div>
+
 <script>
+  // ===== Portfólio: mockups conceituais (páginas reais em /portfolio/) + lightbox =====
+  // PLACEHOLDER: adicione/remova nichos aqui para atualizar o portfólio (o "file" aponta para a página real dentro de /portfolio/)
+  const PORTFOLIO_ITEMS = [
+    { niche: 'Dentista', file: 'portfolio/dentista.html' },
+    { niche: 'Restaurante', file: 'portfolio/restaurante.html' },
+    { niche: 'Loja de Roupas', file: 'portfolio/loja-de-roupas.html' },
+    { niche: 'Petshop', file: 'portfolio/petshop.html' },
+    { niche: 'Advogado', file: 'portfolio/advogado.html' },
+    { niche: 'Academia', file: 'portfolio/academia.html' },
+    { niche: 'Salão de Beleza', file: 'portfolio/salao-de-beleza.html' },
+    { niche: 'Contador', file: 'portfolio/contador.html' },
+    { niche: 'Arquiteto', file: 'portfolio/arquiteto.html' },
+    { niche: 'Personal Trainer', file: 'portfolio/personal-trainer.html' },
+    { niche: 'Barbearia', file: 'portfolio/barbearia.html' },
+    { niche: 'Floricultura', file: 'portfolio/floricultura.html' },
+    { niche: 'Imobiliária', file: 'portfolio/imobiliaria.html' },
+    { niche: 'Oficina Mecânica', file: 'portfolio/oficina-mecanica.html' },
+    { niche: 'Clínica de Estética', file: 'portfolio/clinica-de-estetica.html' },
+  ];
+
+  const portfolioGrid = document.getElementById('portfolioGrid');
+  portfolioGrid.innerHTML = PORTFOLIO_ITEMS.map((item, i) => `
+    <div class="portfolio-card reveal" data-index="${i}" tabindex="0" role="button" aria-label="Ver projeto conceito: ${item.niche}">
+      <div class="portfolio-thumb"><iframe src="${item.file}" tabindex="-1" loading="lazy" title="${item.niche} — Projeto conceito Torvei.AI"></iframe></div>
+      <div class="portfolio-overlay"><i data-lucide="search"></i><span>${item.niche}</span></div>
+    </div>
+  `).join('');
+
+  const lightbox = document.getElementById('portfolioLightbox');
+  const lightboxMockup = document.getElementById('lightboxMockup');
+  const lightboxNiche = document.getElementById('lightboxNiche');
+  const lightboxOpenFull = document.getElementById('lightboxOpenFull');
+  let currentPortfolioIndex = 0;
+
+  function renderLightbox() {
+    const item = PORTFOLIO_ITEMS[currentPortfolioIndex];
+    lightboxMockup.innerHTML = `<iframe src="${item.file}" title="${item.niche} — Projeto conceito Torvei.AI"></iframe>`;
+    lightboxNiche.textContent = item.niche;
+    lightboxOpenFull.href = item.file;
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function openLightbox(index) {
+    currentPortfolioIndex = index;
+    renderLightbox();
+    lightbox.classList.add('open');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+  }
+
+  function showPortfolioItem(delta) {
+    currentPortfolioIndex = (currentPortfolioIndex + delta + PORTFOLIO_ITEMS.length) % PORTFOLIO_ITEMS.length;
+    renderLightbox();
+  }
+
+  portfolioGrid.querySelectorAll('.portfolio-card').forEach((card) => {
+    card.addEventListener('click', () => openLightbox(Number(card.dataset.index)));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(Number(card.dataset.index));
+      }
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => showPortfolioItem(-1));
+  document.getElementById('lightboxNext').addEventListener('click', () => showPortfolioItem(1));
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPortfolioItem(-1);
+    if (e.key === 'ArrowRight') showPortfolioItem(1);
+  });
+
   // Número oficial da Torvei.AI no formato internacional (DDI+DDD+número)
   const WHATSAPP_NUMBER = '5511915099227';
   const DEFAULT_MESSAGE = 'Olá! Vi o site da Torvei.AI e quero saber mais sobre os serviços.';
